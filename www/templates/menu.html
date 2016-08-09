@@ -24,12 +24,22 @@
     </ion-header-bar>
 
     <ion-content>
-      <div class="list" menu-close ng-repeat="person in persons | filter: search">
+      <div class="list" menu-close ng-repeat="person in myContacts | filter: search">
           <a class="item item-avatar" href="#">
             <img src="">
             <h2>{{person.name}}</h2>
             <p>{{person.description}}</p>
           </a>
+      </div>
+      <div class="list" menu-close ng-repeat="person in othersContacts | filter: search" ng-if="(myContacts | filter: search).length == 0">
+          <a class="item item-avatar" href="#">
+            <img src="">
+            <h2>{{person.name}}</h2>
+            <p>{{person.description}}</p>
+          </a>
+      </div>
+      <div ng-if="(myContacts | filter: search).length == 0 && (othersContacts | filter: search).length == 0">
+        <p>Nenhum contato encontrado para a busca: {{search}}</p>
       </div>
     </ion-content>
 
